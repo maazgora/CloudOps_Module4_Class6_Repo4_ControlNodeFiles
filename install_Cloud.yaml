@@ -1,6 +1,6 @@
 ---
 - name: Install httpd
-  hosts: webservers
+  hosts: Cloud
   remote_user: ec2-user
   become: true
   
@@ -12,12 +12,12 @@
 
     - name: copy zip file to remote server
       copy:
-        src: /home/ec2-user/Einstein.zip
-        dest: /home/ec2-user/Einstein.zip
+        src: /home/ec2-user/Cloud.zip
+        dest: /home/ec2-user/Cloud.zip
 
     - name: Unarchive a file that is already on the remote machine
       unarchive:
-        src: /home/ec2-user/Einstein.zip
+        src: /home/ec2-user/Cloud.zip
         dest: /tmp
         remote_src: yes
 
@@ -29,7 +29,11 @@
         remote_src: true
       loop:
         - index.html
-        - einstein.jpg  
+        - cloud-computing.png 
+        - cloud-icon.png
+        - cscc1030.css
+        - cscc1030.js
+        - lion-logo.png 
 
     - name: Start and Enable httpd
       systemd:
